@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic Frontalier Suisse — Raphaël Esparon</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:   #0F1C35;
+  --blue:   #2563EB;
+  --blue2:  #3B82F6;
+  --blue-lt: #EFF6FF;
+  --teal:   #0EA5E9;
+  --green:  #10B981;
+  --smoke:  #F8FAFF;
+  --border: #E2E8F4;
+  --muted:  #6B7793;
+  --text:   #1E293B;
+  --white:  #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: linear-gradient(90deg, #0EA5E9, #2563EB);
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 10px 20px;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 70px;
+}
+
+.logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 19px;
+  color: var(--navy); letter-spacing: -.01em;
+}
+.logo span { color: var(--blue); }
+
+.nav-right { display: flex; align-items: center; gap: 32px; }
+
+.nav-link {
+  font-size: 14px; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--navy); }
+
+.nav-btn {
+  background: var(--navy); color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900; font-size: 13px;
+  padding: 11px 26px; border-radius: 50px;
+  text-decoration: none; letter-spacing: .02em;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: var(--blue); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  padding: 100px 64px 0;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px;
+  align-items: end;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Gradient orbs */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,.18) 0%, transparent 70%);
+  top: -200px; right: 300px;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,.12) 0%, transparent 70%);
+  bottom: 0; left: 100px;
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; padding-bottom: 90px; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(37,99,235,.2);
+  border: 1px solid rgba(59,130,246,.3);
+  color: #93C5FD;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 50px;
+  margin-bottom: 32px;
+}
+
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #60A5FA;
+  box-shadow: 0 0 8px #60A5FA;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.hero h1 .line-blue { color: #60A5FA; }
+.hero h1 .line-muted {
+  color: rgba(255,255,255,.35);
+  font-weight: 600;
+  font-size: .75em;
+  display: block;
+  letter-spacing: -.01em;
+}
+
+.hero-sub {
+  font-size: 17px; font-weight: 300;
+  color: rgba(255,255,255,.55);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 44px;
+}
+.hero-sub b { color: rgba(255,255,255,.85); font-weight: 600; }
+
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  list-style: none; margin-bottom: 48px;
+}
+.hero-pills li {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,.75);
+}
+.hero-pills li::before {
+  content: '✓';
+  color: #60A5FA; font-weight: 800; font-size: 13px;
+}
+
+/* ── HERO CARD ── */
+.hero-card {
+  position: relative; z-index: 1;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  padding: 44px 36px 52px;
+  text-align: center;
+  box-shadow: 0 -20px 60px rgba(0,0,0,.2);
+}
+
+.card-chip {
+  display: inline-block;
+  background: #EFF6FF; color: var(--blue);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 50px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 20px;
+  color: var(--navy); line-height: 1.3;
+  margin-bottom: 28px;
+}
+
+.card-price-row {
+  display: flex; align-items: baseline;
+  justify-content: center; gap: 4px;
+  margin-bottom: 6px;
+}
+.card-currency {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; font-size: 24px; color: var(--muted);
+}
+.card-amount {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900; font-size: 76px; color: var(--navy);
+  line-height: 1; letter-spacing: -.04em;
+}
+.card-duration {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.card-sep { height: 1px; background: var(--border); margin: 0 0 24px; }
+
+.card-list {
+  list-style: none; text-align: left;
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 32px;
+}
+.card-list li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; color: var(--text); line-height: 1.5;
+}
+.card-list li::before {
+  content: '✓'; color: var(--blue);
+  font-weight: 800; flex-shrink: 0;
+}
+
+.btn-main {
+  display: block; width: 100%;
+  background: #10B981; color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; font-size: 15px;
+  letter-spacing: .03em;
+  padding: 17px 24px; border-radius: 14px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 6px 24px rgba(16,185,129,.3);
+  text-align: center;
+}
+.btn-main:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(16,185,129,.4);
+}
+
+.card-secure {
+  margin-top: 12px; font-size: 12px; color: var(--muted);
+}
+
+/* ── SHARED ── */
+.section { padding: 96px 64px; }
+.section-sm { padding: 72px 64px; }
+.inner { max-width: 860px; margin: 0 auto; }
+.inner-wide { max-width: 1100px; margin: 0 auto; }
+
+.eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before {
+  content: ''; display: block;
+  width: 20px; height: 2px; border-radius: 2px;
+  background: var(--blue);
+}
+
+h2.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.15; letter-spacing: -.03em;
+  color: var(--navy);
+}
+h2.title .blue { color: var(--blue); }
+h2.title .muted { color: var(--muted); font-weight: 600; }
+
+/* ── PROBLEM ── */
+.problem { background: var(--smoke); border-bottom: 1px solid var(--border); }
+
+.problem-lead {
+  font-size: 19px; font-weight: 400;
+  color: var(--text); line-height: 1.8;
+  margin: 36px 0 44px;
+}
+.problem-lead strong { font-weight: 700; color: var(--navy); }
+
+.pain-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-bottom: 44px;
+}
+
+.pain-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 20px; padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.pain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(37,99,235,.08);
+  border-color: var(--blue2);
+}
+
+.pain-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  opacity: 0; transition: opacity .2s;
+}
+.pain-card:hover::before { opacity: 1; }
+
+.pain-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--blue-lt);
+  border: 1px solid #BFDBFE;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+
+.pain-body strong {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 18px;
+  color: var(--navy); margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.pain-card p { font-size: 14.5px; color: var(--muted); margin: 0; line-height: 1.65; }
+
+.highlight-box {
+  background: var(--blue); border-radius: 20px;
+  padding: 36px 40px;
+  display: flex; gap: 24px; align-items: center;
+}
+.highlight-icon { font-size: 36px; flex-shrink: 0; }
+.highlight-box p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px; font-weight: 700;
+  color: #fff; line-height: 1.5; margin: 0;
+}
+.highlight-box p span { color: #BAE6FD; }
+
+/* ── STATS ── */
+.stats { background: var(--smoke); border-bottom: 1px solid var(--border); }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; border-radius: 20px;
+  overflow: hidden; border: 1px solid var(--border);
+  margin-top: 48px;
+}
+.stat-cell {
+  background: var(--white); padding: 48px 36px; text-align: center;
+}
+.stat-val {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900; font-size: 58px;
+  color: var(--navy); letter-spacing: -.04em;
+  line-height: 1; margin-bottom: 10px;
+}
+.stat-val em { color: var(--blue); font-style: normal; }
+.stat-desc {
+  font-size: 14px; color: var(--muted); line-height: 1.55;
+}
+
+/* ── OFFER ── */
+.offer { background: var(--smoke); border-bottom: 1px solid var(--border); }
+
+.offer-cards {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 20px; margin-top: 52px;
+}
+.offer-card {
+  border: 2px solid var(--border);
+  border-radius: 20px; padding: 40px 32px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative; overflow: hidden;
+  background: var(--white);
+}
+.offer-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(37,99,235,.1);
+}
+.offer-card:hover .offer-num { opacity: .5; }
+.offer-num {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900; font-size: 80px;
+  color: var(--blue); opacity: .12;
+  letter-spacing: -.04em;
+  line-height: 1; margin-bottom: 16px;
+  transition: opacity .2s;
+}
+
+.offer-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 22px;
+  color: var(--navy); margin-bottom: 12px;
+}
+
+.offer-card p {
+  font-size: 15px; color: var(--muted);
+  line-height: 1.7; margin: 0;
+  font-weight: 500;
+}
+
+/* ── TESTIMONIALS ── */
+.testis { background: var(--navy); padding: 96px 64px; }
+.testis .eyebrow { color: #60A5FA; }
+.testis .eyebrow::before { background: #60A5FA; }
+.testis h2.title { color: #fff; }
+.testis h2.title .blue { color: #60A5FA; }
+
+.testi-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-top: 52px;
+}
+.testi-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px; padding: 36px;
+  transition: border-color .25s;
+}
+.testi-card:hover { border-color: rgba(96,165,250,.4); }
+
+.testi-stars { font-size: 15px; color: #FBBF24; letter-spacing: 2px; margin-bottom: 16px; }
+
+.testi-badge {
+  display: inline-block;
+  background: rgba(37,99,235,.25);
+  color: #93C5FD;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 50px;
+  margin-bottom: 18px;
+}
+
+.testi-quote {
+  font-size: 16px; font-weight: 400;
+  color: rgba(255,255,255,.85);
+  line-height: 1.75; font-style: italic;
+  margin-bottom: 28px;
+}
+
+.testi-author {
+  display: flex; align-items: center; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 20px;
+}
+.testi-ava {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(37,99,235,.3);
+  border: 2px solid rgba(96,165,250,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 14px; color: #93C5FD;
+  flex-shrink: 0;
+}
+.testi-info strong { display: block; font-size: 14px; font-weight: 700; color: #fff; }
+.testi-info span { font-size: 12px; color: rgba(255,255,255,.4); }
+
+/* ── ABOUT ── */
+.about { background: var(--smoke); border-bottom: 1px solid var(--border); }
+
+.about-layout {
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 72px; align-items: center; margin-top: 52px;
+}
+.about-text p {
+  font-size: 16.5px; line-height: 1.8;
+  color: var(--text); margin-bottom: 18px;
+}
+.about-text p:last-child { margin: 0; }
+
+.about-visual {
+  background: var(--navy); border-radius: 24px;
+  aspect-ratio: 3/4; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.about-visual::before {
+  content: 'RE';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900; font-size: 100px;
+  color: rgba(255,255,255,.05);
+  letter-spacing: -.04em;
+}
+.about-visual-bar {
+  width: 100%; padding: 24px;
+  background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+}
+.about-visual-bar p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; font-size: 15px; color: #fff; margin: 0;
+}
+.about-visual-bar span { font-size: 12px; color: rgba(255,255,255,.5); font-weight: 400; }
+
+/* ── FAQ ── */
+.faq { background: var(--white); border-bottom: 1px solid var(--border); }
+
+.faq-items { margin-top: 52px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 26px 0; }
+.faq-q {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; font-size: 17px;
+  color: var(--navy); margin-bottom: 12px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+}
+.faq-q::after { content: '+'; font-size: 24px; font-weight: 300; color: var(--blue); flex-shrink: 0; line-height: 1.1; }
+.faq-a { font-size: 15.5px; color: var(--muted); line-height: 1.75; }
+
+/* ── FINAL CTA ── */
+.final {
+  background: var(--navy); padding: 120px 64px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,.25) 0%, transparent 70%);
+}
+.final-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+
+.final-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: #60A5FA; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.final-eyebrow::before, .final-eyebrow::after {
+  content: ''; display: block; width: 30px; height: 1px; background: rgba(96,165,250,.4);
+}
+
+.final-h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 58px);
+  letter-spacing: -.03em; line-height: 1.1;
+  color: #fff; margin-bottom: 20px;
+}
+.final-h2 .blue { color: #60A5FA; }
+
+.final-sub {
+  font-size: 17px; font-weight: 300;
+  color: rgba(255,255,255,.5); margin-bottom: 52px; line-height: 1.7;
+}
+
+.btn-cta {
+  display: inline-block;
+  background: #10B981; color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 16px;
+  letter-spacing: -.01em;
+  padding: 20px 52px; border-radius: 50px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 8px 30px rgba(16,185,129,.3);
+}
+.btn-cta:hover {
+  background: #059669; color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(16,185,129,.4);
+}
+
+.final-note { margin-top: 18px; font-size: 13px; color: rgba(255,255,255,.3); }
+
+/* ── FOOTER ── */
+footer {
+  background: #080E1C;
+  padding: 36px 64px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.foot-logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 16px;
+  color: rgba(255,255,255,.4);
+}
+.foot-logo span { color: var(--blue); }
+.foot-links { display: flex; gap: 24px; }
+.foot-links a {
+  font-size: 12px; color: rgba(255,255,255,.25);
+  text-decoration: none; transition: color .2s;
+}
+.foot-links a:hover { color: rgba(255,255,255,.5); }
+
+/* ── RESPONSIVE TABLETTE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-right a:not(.nav-btn) { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 64px 24px 0; }
+  .hero-card { border-radius: 24px; margin-bottom: 48px; }
+  .section, .section-sm { padding: 72px 24px; }
+  .testis, .about, .faq { padding: 72px 24px; }
+  .final { padding: 80px 24px; }
+  .pain-grid { grid-template-columns: 1fr 1fr; }
+  .offer-cards { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr; border-radius: 16px; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-visual { aspect-ratio: 2/1; }
+  footer { flex-direction: column; gap: 20px; padding: 28px 24px; text-align: center; }
+  .foot-links { flex-wrap: wrap; justify-content: center; }
+  .inner, .inner-wide { padding: 0 24px; }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 640px) {
+  section[style*="padding:96px 64px"],
+  section[style*="padding: 96px 64px"] {
+    padding: 56px 20px !important;
+  }
+  div[style*="display:flex; gap:24px; align-items:center"] {
+    flex-direction: column !important;
+    padding: 24px 20px !important;
+    text-align: center;
+  }
+  /* NAV */
+  nav { padding: 0 20px; height: 60px; }
+  .logo { font-size: 16px; }
+  .nav-btn { font-size: 12px !important; padding: 9px 18px; }
+
+  /* TOPBAR */
+  .topbar { font-size: 11.5px; padding: 8px 16px; }
+
+  /* HERO */
+  .hero { padding: 52px 20px 0; gap: 40px; }
+  .hero-tag { font-size: 10px; padding: 6px 14px; margin-bottom: 20px; }
+  .hero h1 { font-size: 32px; margin-bottom: 16px; }
+  .hero-sub { font-size: 15px; margin-bottom: 28px; }
+  .hero-pills { gap: 8px; margin-bottom: 36px; }
+  .hero-pills li { font-size: 13px; padding: 7px 14px; }
+
+  /* HERO CARD */
+  .hero-card { padding: 32px 24px 40px; }
+  .card-title { font-size: 17px; margin-bottom: 20px; }
+  .card-amount { font-size: 60px; }
+  .card-currency { font-size: 20px; }
+
+  /* SECTIONS */
+  .section, .section-sm { padding: 56px 20px; }
+  .testis, .about, .faq { padding: 56px 20px; }
+  .final { padding: 64px 20px; }
+  .inner, .inner-wide { padding: 0; }
+
+  /* TITLES */
+  h2.title { font-size: 26px; }
+  .eyebrow { font-size: 10px; }
+
+  /* PAIN GRID - 1 colonne sur mobile */
+  .pain-grid { grid-template-columns: 1fr; gap: 12px; }
+  .pain-card { padding: 24px 20px; gap: 12px; }
+  .pain-body strong { font-size: 16px; }
+  .pain-icon { width: 48px; height: 48px; font-size: 20px; }
+
+  /* PROBLEM */
+  .problem-lead { font-size: 16px; margin-bottom: 28px; }
+  .highlight-box { flex-direction: column; padding: 24px 20px; gap: 16px; text-align: center; }
+  .highlight-box p { font-size: 16px; }
+  .highlight-icon { font-size: 28px; }
+
+  /* STATS */
+  .stats-row { grid-template-columns: 1fr; }
+  .stat-cell { padding: 32px 24px; }
+  .stat-val { font-size: 48px; }
+
+  /* OFFER */
+  .offer-cards { grid-template-columns: 1fr; gap: 12px; }
+  .offer-card { padding: 28px 24px; }
+  .offer-num { font-size: 60px; }
+  .offer-card h3 { font-size: 18px; }
+
+  /* HIDDEN MARKET */
+  .hidden-market-grid { grid-template-columns: 1fr !important; }
+
+  /* TESTI */
+  .testi-grid { grid-template-columns: 1fr; gap: 12px; }
+  .testi-card { padding: 24px 20px; }
+  .testi-text { font-size: 15px; }
+
+  /* ABOUT */
+  .about-layout { grid-template-columns: 1fr; gap: 32px; }
+  .about-visual { aspect-ratio: 16/7; border-radius: 16px; }
+  .about-text p { font-size: 15px; }
+
+  /* FAQ */
+  .faq-q { font-size: 15px; }
+  .faq-a { font-size: 14px; }
+  .faq-item { padding: 20px 0; }
+
+  /* FINAL */
+  .final-h2 { font-size: 28px; }
+  .final-sub { font-size: 15px; }
+  .btn-cta { padding: 18px 32px; font-size: 15px; width: 100%; text-align: center; display: block; }
+
+  /* FOOTER */
+  footer { padding: 24px 20px; gap: 16px; }
+  .foot-links { gap: 16px; }
+  .foot-links a { font-size: 11px; }
+
+  /* DIAGNOSTIC CARD */
+  .card-list li { font-size: 13px; }
+  .btn-main { font-size: 14px; padding: 15px 20px; }
+}
+
+/* ── BOUTONS PALIERS ── */
+.cta-palier {
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.btn-palier {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: var(--navy);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  border: 2px solid var(--border);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
+
+.btn-palier:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,99,235,.25);
+}
+
+.btn-palier .arrow {
+  background: var(--blue);
+  color: #fff;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+
+.btn-palier:hover .arrow { background: #fff; color: var(--blue); }
+
+/* ── BOUTON FLOTTANT ── */
+.sticky-cta {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: #10B981;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(16,185,129,.45);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  transition: transform .2s, box-shadow .2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sticky-cta:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 14px 40px rgba(16,185,129,.5);
+}
+
+.sticky-dot {
+  width: 8px; height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@media (max-width: 640px) {
+  .sticky-cta { font-size: 13px; padding: 13px 24px; bottom: 16px; }
+  .btn-palier { font-size: 13px; padding: 14px 24px; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero-tag    { animation: fadeUp .6s ease 0s both; }
+.hero h1     { animation: fadeUp .6s ease .1s both; }
+.hero-sub    { animation: fadeUp .6s ease .2s both; }
+.hero-pills  { animation: fadeUp .6s ease .3s both; }
+.hero-card   { animation: fadeUp .7s ease .15s both; }
+</style>
+</head>
+<body>
+
+<div class="topbar">🇨🇭 Spécialiste mobilité France → Suisse romande &nbsp;·&nbsp; Méthode testée : emploi décroché en moins de 90 jours</div>
+
+<!-- BOUTON FLOTTANT -->
+<a href="https://calendly.com/esprraphael/strategie-de-reussite-en-tant-que-frontalier-suisse" class="sticky-cta" target="_blank">
+  <span class="sticky-dot"></span>
+  Réserver mon diagnostic
+</a>
+
+<nav>
+  <div class="logo">Raphaël <span>Esparon</span></div>
+  <div class="nav-right">
+    <a href="#offre" class="nav-link">Le diagnostic</a>
+    <a href="#temoignages" class="nav-link">Témoignages</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="https://calendly.com/esprraphael/strategie-de-reussite-en-tant-que-frontalier-suisse" class="nav-btn" target="_blank">Réserver mon diagnostic</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="grid-template-columns:1fr; padding-bottom:90px;">
+  <div class="hero-content" style="padding-bottom:0; max-width:700px;">
+    <div class="hero-tag">🎯 Décrochez un emploi en Suisse romande en moins de 90 jours</div>
+    <h1>
+      Votre CV français<br>
+      <span class="line-blue">vous bloque en Suisse.</span>
+      <span class="line-muted">On règle ça en 45 minutes.</span>
+    </h1>
+    <p class="hero-sub">
+      J'identifie exactement ce qui fait rater vos candidatures — <b>CV inadapté et stratégie de postulation incorrecte</b> — et vous repartez avec un plan d'action concret pour décrocher votre premier entretien en Suisse romande <b>dans les 30 prochains jours.</b>
+    </p>
+    <ul class="hero-pills">
+      <li>Audit complet de votre CV</li>
+      <li>Analyse de votre cible</li>
+      <li>Plan d'action personnalisé</li>
+      <li>Résultats dès la semaine suivante</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem section" id="diagnostic">
+  <div class="inner">
+    <div class="eyebrow">Le problème</div>
+    <h2 class="title">Vous avez le profil.<br><span class="blue">Pas les codes.</span></h2>
+
+    <p class="problem-lead">
+      Ça fait des semaines, peut-être des mois, que vous envoyez des candidatures en Suisse romande. Malgré votre expérience, vous n'arrivez pas à passer le premier tri. <strong>Ce n'est pas votre profil qui pose problème. C'est votre CV français.</strong>
+    </p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">✉️</div>
+        <div class="pain-body">
+          <strong>Aucune réponse</strong>
+          <p>Refus automatiques ou silence total malgré des candidatures ciblées et un profil solide</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔄</div>
+        <div class="pain-body">
+          <strong>CV retravaillé sans résultats</strong>
+          <p>Des dizaines de versions différentes, toujours le même résultat : rien ne passe</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📋</div>
+        <div class="pain-body">
+          <strong>Profil parfait, pas de retour</strong>
+          <p>Vous postulez sur des offres qui correspondent exactement à votre expérience, sans succès</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🤯</div>
+        <div class="pain-body">
+          <strong>Conseils contradictoires</strong>
+          <p>Internet vous noie dans des informations inutiles et vous laisse encore plus perdu qu'avant</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="highlight-icon">⏱️</div>
+      <p>Un recruteur suisse passe <span>moins de 30 secondes</span> sur votre CV. Mais même un CV parfait ne suffit pas sans une stratégie de postulation adaptée au marché suisse. Les deux doivent fonctionner ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PALIER 1 -->
+<div class="cta-palier" style="background:var(--smoke);">
+  <a href="#offre" class="btn-palier">
+    Je veux comprendre pourquoi je n'ai pas de retours
+    <span class="arrow">→</span>
+  </a>
+</div>
+
+<!-- HIDDEN MARKET -->
+<section style="background:var(--blue-lt); padding:96px 64px; border-bottom:1px solid #BFDBFE;">
+  <div class="inner">
+    <div class="eyebrow">L'erreur que tout le monde fait</div>
+    <h2 class="title" style="margin-bottom:36px;">Postuler sur LinkedIn et Indeed<br><span class="blue">c'est se tirer une balle dans le pied.</span></h2>
+
+    <div class="hidden-market-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px;">
+      <div style="background:#fff; border:2px solid #FECACA; border-radius:20px; padding:36px 32px;">
+        <div style="font-family:'Poppins',sans-serif; font-weight:900; font-size:72px; color:#EF4444; letter-spacing:-.04em; line-height:1; margin-bottom:12px;">70<span style="font-size:36px;">%</span></div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:18px; color:var(--navy); margin-bottom:10px;">Des postes ne sont jamais publiés</div>
+        <p style="font-size:14.5px; color:var(--muted); margin:0; line-height:1.65;">La majorité des recrutements suisses se font par réseau, approche directe et cooptation. Vous ne les verrez jamais sur un site de candidature.</p>
+      </div>
+      <div style="background:#fff; border:2px solid #FECACA; border-radius:20px; padding:36px 32px;">
+        <div style="font-family:'Poppins',sans-serif; font-weight:900; font-size:72px; color:#EF4444; letter-spacing:-.04em; line-height:1; margin-bottom:12px;">×<span style="font-size:48px;">100</span></div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:18px; color:var(--navy); margin-bottom:10px;">La concurrence sur les offres en ligne</div>
+        <p style="font-size:14.5px; color:var(--muted); margin:0; line-height:1.65;">Sur chaque offre publiée, des centaines de candidats postulent. Votre CV se retrouve noyé dans une pile que personne ne lit vraiment.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--blue); border-radius:20px; padding:36px 40px; display:flex; gap:24px; align-items:center;">
+      <div style="font-size:40px; flex-shrink:0;">🎯</div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:18px; color:#fff; margin-bottom:8px;">Ma stratégie : aller chercher les postes avant qu'ils soient publiés.</div>
+        <p style="font-size:15px; color:rgba(255,255,255,.75); margin:0; line-height:1.7;">Approche directe des recruteurs, activation du réseau frontalier, ciblage des entreprises qui recrutent en silence. Vous n'êtes plus en concurrence avec personne — vous arrivez avant tout le monde.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PALIER 2 -->
+<div class="cta-palier">
+  <a href="#offre" class="btn-palier">
+    Je veux accéder au marché caché suisse
+    <span class="arrow">→</span>
+  </a>
+</div>
+
+<!-- STATS -->
+<section class="stats section-sm" >
+  <div class="inner-wide">
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-val">30<em>s</em></div>
+        <div class="stat-desc">Temps moyen qu'un recruteur suisse<br>consacre à votre CV</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">95<em>%</em></div>
+        <div class="stat-desc">Des CV français ne répondent pas<br>aux attentes du marché suisse</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">+50</div>
+        <div class="stat-desc">Professionnels accompagnés vers<br>un poste frontalier en Suisse romande</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer section" id="offre">
+  <div class="inner-wide">
+    <div class="eyebrow">Ce que vous obtenez</div>
+    <h2 class="title">CV corrigé.<br><span class="blue">Stratégie définie.</span> <span class="muted">Plan en main.</span></h2>
+
+    <div class="offer-cards">
+      <div class="offer-card">
+        <div class="offer-num">01</div>
+        <h3>Audit de votre CV</h3>
+        <p>Analyse complète selon les standards suisses : structure, terminologie, photo, accroche, mise en valeur des expériences. Vous saurez exactement ce qui bloque.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-num">02</div>
+        <h3>Analyse de votre cible</h3>
+        <p>Identification des secteurs, entreprises et cantons en Suisse romande qui recrutent votre profil. Vous saurez où concentrer vos efforts.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-num">03</div>
+        <h3>Plan d'action</h3>
+        <p>Feuille de route claire et priorisée : ce qui freine, ce qu'il faut corriger en priorité, les premières actions à lancer cette semaine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTI -->
+<section class="testis" id="temoignages">
+  <div class="inner-wide">
+    <div class="eyebrow">Résultats concrets</div>
+    <h2 class="title" style="color:#fff">Ils ont franchi la frontière.<br><span class="blue">Des profils comme le vôtre.</span></h2>
+
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-badge">Entretien décroché en 7 jours</div>
+        <p class="testi-quote">« Après 3 mois de refus avec mon CV français, j'ai décroché un entretien à Genève dans la semaine qui a suivi le diagnostic. Raphaël m'a expliqué exactement ce qui ne passait pas. Aucun bla-bla, que du concret. »</p>
+        <div class="testi-author">
+          <div class="testi-ava">SC</div>
+          <div class="testi-info"><strong>Sophie C.</strong><span>Ingénieure civile · Haute-Savoie</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-badge">2 entretiens en 2 semaines</div>
+        <p class="testi-quote">« C'était précis, concret et actionnable. En sortant du call j'avais une liste claire de ce qu'il fallait faire. Deux semaines plus tard, deux entretiens confirmés à Lausanne. »</p>
+        <div class="testi-author">
+          <div class="testi-ava">MD</div>
+          <div class="testi-info"><strong>Marc D.</strong><span>Comptable · Ain</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-badge">Blocage identifié et résolu</div>
+        <p class="testi-quote">« Je ne comprenais pas pourquoi mon profil ne passait pas. Raphaël m'a tout expliqué en 45 minutes. J'aurais voulu avoir ce diagnostic 6 mois plus tôt. J'aurais économisé un temps fou. »</p>
+        <div class="testi-author">
+          <div class="testi-ava">LB</div>
+          <div class="testi-info"><strong>Lucie B.</strong><span>Responsable RH · Franche-Comté</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-badge">Poste décroché en Suisse romande</div>
+        <p class="testi-quote">« Très bonne session, vraiment utile. Raphaël connaît le marché suisse en profondeur et ne mâche pas ses mots. Exactement ce dont j'avais besoin pour sortir de l'impasse. »</p>
+        <div class="testi-author">
+          <div class="testi-ava">TA</div>
+          <div class="testi-info"><strong>Thomas A.</strong><span>Ingénieur territorial · Doubs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PALIER 3 -->
+<div class="cta-palier" style="background:var(--navy); border-color:rgba(255,255,255,.08);">
+  <a href="#offre" class="btn-palier" style="background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.15);">
+    Je veux des résultats comme eux
+    <span class="arrow" style="background:#10B981;">→</span>
+  </a>
+</div>
+
+<!-- ABOUT -->
+<section class="about section">
+  <div class="inner">
+    <div class="eyebrow">Qui suis-je</div>
+    <h2 class="title">Raphaël Esparon —<br><span class="blue">Consultant mobilité Franco-Suisse.</span></h2>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>Depuis <strong>4 ans</strong>, j'accompagne des professionnels dans toute la France qui veulent décrocher un poste en Suisse romande. Ingénieurs, comptables, RH, juristes, coordinateurs, commerciaux — des centaines de profils, des dizaines de secteurs.</p>
+        <p>Ce que j'ai constaté systématiquement : les candidats échouent pour deux raisons précises. <strong>Un CV au format français qui ne parle pas aux recruteurs suisses.</strong> Et <strong>une stratégie de postulation inadaptée</strong> — mauvaises cibles, mauvais canaux, mauvais timing. L'un sans l'autre ne suffit pas.</p>
+        <p>En 4 ans, j'ai analysé des centaines de dossiers et identifié exactement ce qui bloque à chaque étape. Ce diagnostic de 45 minutes, c'est la synthèse de tout ce que j'ai appris — un plan d'action sur le CV et sur la stratégie, que vous pouvez appliquer dès la semaine suivante.</p>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-bar">
+          <p>Raphaël Esparon</p>
+          <span>Consultant mobilité Franco-Suisse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PALIER 4 -->
+<div class="cta-palier" style="background:var(--smoke);">
+  <a href="#offre" class="btn-palier">
+    Je réserve ma session avec Raphaël
+    <span class="arrow">→</span>
+  </a>
+</div>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+  <div class="inner">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="title">Vos questions.<br><span class="blue">Réponses directes.</span></h2>
+    <div class="faq-items">
+      <div class="faq-item">
+        <div class="faq-q">Pour qui est ce diagnostic ?</div>
+        <div class="faq-a">Pour tout professionnel français cherchant un poste en Suisse romande — frontalier ou futur frontalier — qui envoie des candidatures sans obtenir de retours. Peu importe votre secteur ou votre niveau d'expérience.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Comment ça se passe concrètement ?</div>
+        <div class="faq-a">Vous réservez votre créneau en ligne. Je vous envoie un lien visio + un formulaire de préparation à compléter avant la session. La session dure 45 min. Vous repartez avec un plan d'action écrit et priorisé.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Est-ce que vous réécrivez mon CV pendant la session ?</div>
+        <div class="faq-a">Non. Le diagnostic identifie précisément ce qui bloque — CV et stratégie — et vous donne les clés pour corriger vous-même. Si vous souhaitez un accompagnement complet avec réécriture du CV, refonte de votre stratégie et préparation aux entretiens suisses, c'est l'objet du pack complet à 299€.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Est-ce que ça marche même si je suis loin de la Suisse ?</div>
+        <div class="faq-a">Oui, complètement. J'accompagne des professionnels depuis toute la France — Paris, Lyon, Bordeaux, Marseille, Strasbourg, Lille. La session se fait en visio, et la stratégie frontalière s'adapte à votre localisation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Je n'ai jamais travaillé en Suisse, est-ce un frein ?</div>
+        <div class="faq-a">Pas du tout. La majorité des personnes que j'accompagne n'ont aucune expérience suisse au départ. C'est précisément pour ça que le diagnostic est utile : savoir comment présenter un parcours 100% français pour qu'il soit lisible et valorisé par un recruteur helvétique.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Combien de temps avant d'avoir des résultats ?</div>
+        <div class="faq-a">La plupart des candidats qui appliquent le plan d'action obtiennent leurs premiers retours positifs dans les 2 à 4 semaines suivant la session. L'objectif est de décrocher un poste en moins de 90 jours.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Pourquoi payer pour un diagnostic alors que j'ai déjà cherché sur internet ?</div>
+        <div class="faq-a">Internet donne des conseils génériques, souvent contradictoires, jamais adaptés au marché suisse spécifiquement. Ce diagnostic, c'est 4 ans d'expérience terrain condensés en 45 minutes — appliqués à votre profil, votre secteur, votre situation. Ce n'est pas la même chose.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Est-ce que ce diagnostic est fait pour moi si je suis déjà frontalier ?</div>
+        <div class="faq-a">Oui, si vous cherchez à changer de poste ou à évoluer. Les codes du recrutement suisse changent selon les secteurs et les niveaux de poste. Un diagnostic permet de recalibrer votre approche et votre CV pour votre prochaine étape.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSTIC CARD -->
+<section style="background:var(--smoke); padding:96px 64px; border-top:1px solid var(--border);" id="offre">
+  <div style="max-width:560px; margin:0 auto;">
+    <div class="eyebrow" style="justify-content:center;">Le diagnostic</div>
+    <h2 class="title" style="text-align:center; margin-bottom:40px;">Prêt à passer à l'action ?</h2>
+    <div class="hero-card" style="border-radius:24px; box-shadow:0 20px 60px rgba(15,28,53,.12); border:2px solid var(--border);">
+      <div class="card-chip">🎯 Emploi en Suisse en moins de 90 jours</div>
+      <div class="card-title">CV &amp; Stratégie Frontalier Suisse</div>
+      <div class="card-price-row">
+        <span class="card-amount">40</span>
+        <span class="card-currency">CHF</span>
+      </div>
+      <div class="card-duration">Session visio · 45 minutes</div>
+      <div class="card-sep"></div>
+      <ul class="card-list">
+        <li>Audit de votre CV selon les standards suisses</li>
+        <li>Analyse de votre profil &amp; secteur cible</li>
+        <li>Plan d'action écrit post-session</li>
+        <li>Ressources exclusives marché suisse</li>
+      </ul>
+      <a href="https://calendly.com/esprraphael/strategie-de-reussite-en-tant-que-frontalier-suisse" class="btn-main" target="_blank">Réserver mon diagnostic →</a>
+      <div class="card-secure">🔒 Paiement sécurisé</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="final-inner">
+    <div class="final-eyebrow">Passez à l'action</div>
+    <h2 class="final-h2">45 minutes pour<br><span class="blue">débloquer votre projet.</span></h2>
+    <p class="final-sub">Ne perdez pas 3 mois de plus avec un CV qui ne passe pas le premier tri.</p>
+    <a href="https://calendly.com/esprraphael/strategie-de-reussite-en-tant-que-frontalier-suisse" class="btn-cta" target="_blank">Réserver mon diagnostic →</a>
+    <div class="final-note">🔒 Paiement sécurisé · Session visio</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">© 2026 <span>Raphaël Esparon</span></div>
+  <div class="foot-links">
+    <a href="#">Mentions légales</a>
+    <a href="#">CGV</a>
+    <a href="#">Contact</a>
+    <a href="#">© 2026 Raphaël Esparon</a>
+  </div>
+</footer>
+
+</body>
+</html>
